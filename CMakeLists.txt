@@ -29,13 +29,20 @@ set(CMAKE_CXX_STANDARD 17)
 # Cria um subdiretório no projeto, para que sejam referenciadas as bibliotecas
 pico_sdk_init()
 
+# Adiciona os arquivos de fonte da pasta src
 add_executable(${PROJECT_NAME}
     main.c
 )
+
+add_subdirectory(src)
 
 #Cria os arquivos: map, bin, hex e uf2
 pico_add_extra_outputs(${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME}
     pico_stdlib
+)
+
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
 )
