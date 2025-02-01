@@ -1,0 +1,41 @@
+# Ajusta caminhos e versões
+if(WIN32)
+    set(USERHOME $ENV{USERPROFILE})
+else()
+    set(USERHOME $ENV{HOME})
+endif()
+set(sdkVersion 2.1.0)
+set(toolchainVersion 13_3_Rel1)
+set(picotoolVersion 2.1.0)
+set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+if(EXISTS ${picoVscode})
+    include(${picoVscode})
+endif()
+
+
+# Ajusta a menor versão requerida do CMake para o projeto
+cmake_minimum_required(VERSION 3.12)
+
+# Inclui as funções de construção do Kit Pico
+include(${USERHOME}/.pico-sdk/sdk/2.1.0/external/pico_sdk_import.cmake)
+
+# Define o nome do projeto
+project(Interrupts C CXX ASM)
+
+#Define as versões de C e C++ a serem utilizadas
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+
+# Cria um subdiretório no projeto, para que sejam referenciadas as bibliotecas
+pico_sdk_init()
+
+add_executable(${PROJECT_NAME}
+    main.c
+)
+
+#Cria os arquivos: map, bin, hex e uf2
+pico_add_extra_outputs(${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME}
+    pico_stdlib
+)
