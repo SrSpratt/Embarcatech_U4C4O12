@@ -3,7 +3,7 @@
 
 #include "pico/stdlib.h"
 
-#define LEDPIN 11
+#define LEDPIN 13
 
 /**
  * @brief Alterna o estado do LED no pino especificado em um intervalo determinado.

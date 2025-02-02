@@ -21,13 +21,20 @@ void PrintSketch(Sketch sketch){
 
 }
 
-const double* SketchArray(int frame){
-    static double figure0[] = {
+double* SketchArray(int frame){
+    static double reset[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0
+    };
+    static double figure0[] = {
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0
     };
     static double figure1[] = {
         0.0, 0.0, 1.0, 0.0, 0.0,
@@ -38,9 +45,9 @@ const double* SketchArray(int frame){
     };
     static double figure2[] = {
         0.0, 1.0, 1.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0, 0.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
         0.0, 1.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 1.0, 0.0,
         0.0, 1.0, 1.0, 1.0, 0.0
     };
     static double figure3[] = {
@@ -51,32 +58,32 @@ const double* SketchArray(int frame){
         0.0, 1.0, 1.0, 1.0, 0.0
     };
     static double figure4[] = {
+        0.0, 1.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 1.0, 0.0,
         0.0, 1.0, 1.0, 1.0, 0.0,
         0.0, 1.0, 0.0, 1.0, 0.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0, 0.0
+        0.0, 1.0, 1.0, 1.0, 0.0
     };
     static double figure5[] = {
         0.0, 1.0, 1.0, 1.0, 0.0,
-        0.0, 1.0, 0.0, 0.0, 0.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
         0.0, 0.0, 0.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 1.0, 1.0, 0.0
     };
     static double figure6[] = {
         0.0, 1.0, 1.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0, 0.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
         0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 1.0, 1.0, 0.0
     };
     static double figure7[] = {
-        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0, 0.0
+        0.0, 1.0, 1.0, 1.0, 0.0
     };
     static double figure8[] = {
         0.0, 1.0, 1.0, 1.0, 0.0,
@@ -87,13 +94,15 @@ const double* SketchArray(int frame){
     };
     static double figure9[] = {
         0.0, 1.0, 1.0, 1.0, 0.0,
-        0.0, 1.0, 0.0, 1.0, 0.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
         0.0, 0.0, 0.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
         0.0, 1.0, 1.0, 1.0, 0.0
     };
 
     switch(frame){
+        case 0:
+            return figure0;
         case 1:
             return figure1;
         case 2:
@@ -113,13 +122,20 @@ const double* SketchArray(int frame){
         case 9:
             return figure9;
         default:
-            return figure0;
+            return reset;
     }
 }
 
-void ArrayCopySameSize(double* firstVector, const double* secondVector, int size){
-    for(int i = 0; i < size; i++)
+void ArrayCopySameSize(double* firstVector, double* secondVector, int size){
+
+    for(int i = 0; i < size; i++){
+        firstVector[i] = 0.0;
         firstVector[i] = secondVector[i];
+    }
+    // printf("first\n");
+    // PrintArraySketch(firstVector, size);
+    // printf("second\n");
+    // PrintArraySketch(secondVector, size);
 }
 
 uint32_t RGBMatrix(RGB color){
@@ -131,14 +147,19 @@ uint32_t RGBMatrix(RGB color){
 }
 
 void Draw(Sketch sketch, uint32_t ledConf, PIORefs pio){
+    pio_sm_put_blocking(pio.Address, pio.StateMachine, 0);
+    pio_sm_restart(pio.Address, pio.StateMachine);
     PrintSketch(sketch);
     for (int16_t i = 0; i < VECTORSIZE; i++){
-        if (sketch.Figure[24-i])
+        if (sketch.Figure[i] == 1.0)
             ledConf = RGBMatrix(sketch.MainColor);
         else
             ledConf = RGBMatrix(sketch.BackgroundColor);
         //printf("%.1lf\n", sketch.Figure[i]);
         //printf("%d\n", ledConf);
+        // if (i % 5 == 0)
+        //     printf("\n");
+        // printf("%08X ", ledConf);
         pio_sm_put_blocking(pio.Address, pio.StateMachine, ledConf);
     }
 }

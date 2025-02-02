@@ -11,24 +11,28 @@ int main(){
     PIORefs pio;
 
     PinOut pins[PINS] = {
-        { .Pin = LEDPIN, .Input = false}
+        { 
+            .Pin = LEDPIN, 
+            .Input = false
+        }
     };
     Sketch sketch = {
         .Figure = {
-            0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0
+            0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0
         },
         .MainColor = {
-            .Red = 1.0,
+            .Red = 1,
             .Green = 0.0,
             .Blue = 0.0
         },
         .BackgroundColor = {
-            .Red = 1.0,
-            .Green = 1.0,
-            .Blue = 1.0
+            .Red = 0.0,
+            .Green = 0.0,
+            .Blue = 1.
         }
     };
     uint32_t ledConf = 0;
@@ -38,8 +42,11 @@ int main(){
     InitPIO(&pio, MATRIXPIN);
 
     Draw(sketch, ledConf, pio);
+    PrintPIO(pio);
+
 
     while(1){
+        Count(sketch, ledConf, pio, 1000);
         TogglePin(LEDPIN, 200); // pisca 5 vezes por segundo/ 1 vez a cada 200 ms
     }
 
