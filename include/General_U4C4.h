@@ -83,6 +83,16 @@ void PrintRGB(RGB);
  */
 void Config(PinOut*, int, PIORefs*);
 
+
+/**
+ * @brief Inicializa a PIO com um valor de offset específico.
+ *
+ * Esta função inicializa a PIO configurada com o valor de offset dado,
+ * permitindo o controle da Máquina de Estado no pino correspondente.
+ *
+ * @param pio Estrutura `PIORefs` a ser configurada.
+ * @param offset O valor do offset a ser configurado.
+ */
 void InitPIO(PIORefs*, int);
 
 /**
