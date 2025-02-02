@@ -22,6 +22,8 @@ include(${USERHOME}/.pico-sdk/sdk/2.1.0/external/pico_sdk_import.cmake)
 # Define o nome do projeto
 project(Interrupts C CXX ASM)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 #Define as versões de C e C++ a serem utilizadas
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
@@ -47,6 +49,7 @@ target_link_libraries(${PROJECT_NAME}
     hardware_pio
     hardware_adc
     hardware_clocks
+    hardware_gpio
 )
 
 #Indica o diretório de cabeçalhos

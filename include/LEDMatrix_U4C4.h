@@ -14,6 +14,7 @@
  */
 typedef struct Drawing {
     double Figure[25]; // Vetor de 25 valores representando a figura a ser exibida na matriz.
+    int Index; // Guarda o valor do desenho
     RGB MainColor;     // Cor principal a ser exibida na matriz de LEDs.
     RGB BackgroundColor; // Cor de fundo da matriz de LEDs.
 } Sketch;

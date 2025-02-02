@@ -61,7 +61,7 @@ void InitPin(int PIN, bool input){
 
 void SetInput(int PIN){
     gpio_set_dir(PIN, GPIO_IN);
-    gpio_pull_down(PIN);
+    gpio_pull_up(PIN);
     //printf("%d set as Input\n", PIN);
 }
 
