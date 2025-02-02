@@ -55,7 +55,7 @@ void PrintPinOut(PinOut);
  * Esta função recebe um `PIORefs` e exibe no console o endereço de memória 
  * .
  *
- * @param pin Estrutura `PIOefs`, com endereço de memória, valor de offset e endereço
+ * @param pio Estrutura `PIORefs`, com endereço de memória, valor de offset e endereço
  * da Máquina de estados
  */
 void PrintPIO(PIORefs);
