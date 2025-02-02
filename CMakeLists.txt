@@ -40,7 +40,7 @@ add_subdirectory(src)
 #Cria os arquivos: map, bin, hex e uf2
 pico_add_extra_outputs(${PROJECT_NAME})
 
-pico_generate_pio_header(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/PIO_U4C4.pio)
+pico_generate_pio_header(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/PIO_matrix.pio)
 
 target_link_libraries(${PROJECT_NAME}
     pico_stdlib

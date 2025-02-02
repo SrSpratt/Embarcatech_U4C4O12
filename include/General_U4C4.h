@@ -52,13 +52,24 @@ void PrintPinOut(PinOut);
 /**
  * @brief Imprime as informações da PIO configurada.
  *
- * Esta função recebe um `PIORefs` e exibe no console o endereço de memória 
+ * Esta função recebe um `PIORefs` e exibe no console seu endereço de memória 
  * .
  *
  * @param pio Estrutura `PIORefs`, com endereço de memória, valor de offset e endereço
  * da Máquina de estados
  */
 void PrintPIO(PIORefs);
+
+/**
+ * @brief Imprime as informações do RGB configurado.
+ *
+ * Esta função recebe um `RGB` e exibe no console os valores de vermelho, verde 
+ * e azul.
+ *
+ * @param color Estrutura `RGB`, com valores de vermelho, verde e azul
+ * da Máquina de estados
+ */
+void PrintRGB(RGB);
 
 /**
  * @brief Configura um conjunto de pinos GPIO.
@@ -72,7 +83,7 @@ void PrintPIO(PIORefs);
  */
 void Config(PinOut*, int, PIORefs*);
 
-PIORefs InitPIO();
+void InitPIO(PIORefs*, int);
 
 /**
  * @brief Inicializa o pino GPIO especificado como entrada ou saída.

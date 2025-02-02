@@ -1,18 +1,30 @@
 #include <General_U4C4.h>
 #include <stdio.h>
 #include "hardware/clocks.h"
-#include "pio_u4c4.pio.h"
+#include "pio_matrix.pio.h"
 #include "hardware/adc.h"
 
 void PrintPinOut(PinOut pin){
+    printf("---- Pin ----\n");
     printf("Pin: %d\n", pin.Pin);
     printf("Input: %d\n", pin.Input);
+    printf("---- Pin ----\n");
 }
 
 void PrintPIO(PIORefs pio){
+    printf("---- PIO ----\n");
     printf("Address: %d\n", pio.Address);
     printf("Offset: %d\n", pio.Offset);
     printf("State Machine: %d\n", pio.StateMachine);
+    printf("---- PIO ----\n");
+}
+
+void PrintRGB(RGB color){
+    printf("---- RGB ----\n");
+    printf("Red: %lf\n", color.Red);
+    printf("Green: %lf\n", color.Green);
+    printf("Blue: %lf\n", color.Blue);
+    printf("---- RGB ----\n");
 }
 
 void Config(PinOut* pins, int size, PIORefs* pio){
@@ -28,10 +40,15 @@ void Config(PinOut* pins, int size, PIORefs* pio){
     pio->Address = pio0;
     if(!set_sys_clock_khz(128000, false))
         printf("clock errado!");
-    pio->Offset = pio_add_program(pio->Address, &pio_u4c4_program);
+    pio->Offset = pio_add_program(pio->Address, &pio_matrix_program);
+    pio->StateMachine = pio_claim_unused_sm(pio->Address, true);
     PrintPIO(*(pio));
 
     //printf("configuração terminada\n");
+}
+
+void InitPIO(PIORefs* pio, int pin){
+    pio_matrix_program_init(pio->Address, pio->StateMachine, pio->Offset, pin);
 }
 
 void InitPin(int PIN, bool input){
