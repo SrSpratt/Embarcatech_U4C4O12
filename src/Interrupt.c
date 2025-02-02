@@ -32,7 +32,7 @@ void HandleInterruptMatrix(uint gpio, uint32_t events) {
             if (interruptContext.inputPin == interruptContext.pinToCompare[0]){
                 //printf("\n\nBOTÃO1\n\n");
                 intervalButtonA = currentTime;
-                printf("\nbuttonA: %d\n", intervalButtonA);
+                //printf("\nbuttonA: %d\n", intervalButtonA);
                 if (interruptContext.sketch.Index < 10 )
                     interruptContext.sketch.Index += 1;
                 else
@@ -40,13 +40,13 @@ void HandleInterruptMatrix(uint gpio, uint32_t events) {
             } else {
                 //printf("\n\nBOTÃO2\n\n");
                 intervalButtonB = currentTime;
-                printf("\nbuttonB: %d\n", intervalButtonB);
+                //printf("\nbuttonB: %d\n", intervalButtonB);
                 if (interruptContext.sketch.Index > 0 )
                     interruptContext.sketch.Index -= 1;
                 else
                     interruptContext.sketch.Index = 9;
             }
-            printf("\nindex: %d\n", interruptContext.sketch.Index);
+            //printf("\nindex: %d\n", interruptContext.sketch.Index);
             ArrayCopySameSize(interruptContext.sketch.Figure, SketchArray(interruptContext.sketch.Index), VECTORSIZE);
             interruptContext.callback(interruptContext.sketch, interruptContext.ledConf, interruptContext.pio);
         }
