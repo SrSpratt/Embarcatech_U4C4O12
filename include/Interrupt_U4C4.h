@@ -32,7 +32,7 @@ typedef struct {
     uint32_t ledConf;           /** Configuração dos LEDs a ser utilizada. */
     PIORefs pio;                /** Referências para o PIO. */
     int inputPin;               /** Pino de entrada que ativa a interrupção. */
-    int pinToCompare;           /** Pino que será comparado para disparar a interrupção. */
+    int pinToCompare[2];           /** Pino que será comparado para disparar a interrupção. */
 } InterruptContext;
 
 /** 
@@ -57,15 +57,24 @@ extern InterruptContext interruptContext;
  * @param inputPin Pino de entrada que aciona a interrupção.
  * @param pinToCompare Pino a ser comparado para a interrupção.
  */
-void SetInterrupt(Sketch sketch, uint32_t ledConf, PIORefs pio, InterruptCallback callback, int inputPin, int pinToCompare);
+void SetInterrupt(Sketch, uint32_t, PIORefs, InterruptCallback, int, int[2]);
 
 /**
- * @brief Função de tratamento de interrupção.
+ * @brief Função de tratamento de interrupção para o acionamento de pinos GPIO.
  * 
- * Esta função é chamada quando a interrupção ocorre. Ela verifica
- * se existe uma função callback definida e a chama com os parâmetros
- * armazenados no contexto da interrupção.
- */
-void HandleInterruptMatrix();
+ * Esta função é chamada automaticamente quando ocorre uma interrupção em um pino de entrada configurado.
+ * Ela verifica se o tempo entre a última interrupção e a atual respeita o tempo de debounce, evitando que múltiplas
+ * interrupções sejam acionadas devido ao "bouncing" de um botão. Caso o tempo de debounce seja válido, a interrupção
+ * é processada e a função callback configurada é chamada.
+ *
+ * @param gpio O número do pino GPIO que gerou a interrupção.
+ * @param events Os eventos que ocorreram no pino (por exemplo, borda de subida ou descida).
+ * 
+ * @note O debounce é implementado para evitar múltiplas detecções rápidas do botão.
+ *       O tempo de debounce é configurável e é aplicado ao verificar o intervalo de tempo entre interrupções consecutivas.
+ *       Caso o tempo entre as interrupções seja menor que o valor de debounce, a interrupção é ignorada.
+ *
+ **/
+void HandleInterruptMatrix(uint gpio, uint32_t events);
 
 #endif

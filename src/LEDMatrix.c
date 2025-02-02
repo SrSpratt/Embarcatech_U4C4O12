@@ -147,9 +147,9 @@ uint32_t RGBMatrix(RGB color){
 }
 
 void Draw(Sketch sketch, uint32_t ledConf, PIORefs pio){
-    pio_sm_put_blocking(pio.Address, pio.StateMachine, 0);
+    //pio_sm_put_blocking(pio.Address, pio.StateMachine, 0);
     pio_sm_restart(pio.Address, pio.StateMachine);
-    PrintSketch(sketch);
+    //PrintSketch(sketch);
     for (int16_t i = 0; i < VECTORSIZE; i++){
         if (sketch.Figure[i] == 1.0)
             ledConf = RGBMatrix(sketch.MainColor);

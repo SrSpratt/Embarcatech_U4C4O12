@@ -42,7 +42,7 @@ void Config(PinOut* pins, int size, PIORefs* pio){
         printf("clock errado!");
     pio->Offset = pio_add_program(pio->Address, &pio_matrix_program);
     pio->StateMachine = pio_claim_unused_sm(pio->Address, true);
-    PrintPIO(*(pio));
+    //PrintPIO(*(pio));
 
     //printf("configuração terminada\n");
 }
