@@ -2,6 +2,7 @@
 #define GENERALU4C_H
 
 #include "pico/stdlib.h"
+#include "hardware/pio.h"
 
 /**
  * @brief Estrutura que representa um pino de entrada ou saída.
@@ -15,6 +16,30 @@ typedef struct PinSet {
 } PinOut;
 
 /**
+ * @brief Estrutura que representa a PIO
+ *
+ * Esta estrutura armazena o endereço de memória da referência para 
+ * a PIO, o endereço da máquina de estados, e o valor do offset.
+ */
+typedef struct PIO {
+    PIO Address; //Ponteiro para PIO
+    int StateMachine; // Endereço da máquina de estados
+    int Offset; // Valor do offset
+} PIORefs;
+
+/**
+ * @brief Estrutura que representa a três cores RGB
+ *
+ * Esta estrutura armazena os coeficientes das cores Vermelho, Verde e
+ * Azul, para organizar melhor as cores que serão enviadas para os LEDs WS2812.
+ */
+typedef struct RGB {
+    double Red;
+    double Green;
+    double Blue;
+} RGB;
+
+/**
  * @brief Imprime as informações de um pino GPIO.
  *
  * Esta função recebe um `PinOut` e exibe no console seu número de pino 
@@ -25,15 +50,29 @@ typedef struct PinSet {
 void PrintPinOut(PinOut);
 
 /**
+ * @brief Imprime as informações da PIO configurada.
+ *
+ * Esta função recebe um `PIORefs` e exibe no console o endereço de memória 
+ * .
+ *
+ * @param pin Estrutura `PIOefs`, com endereço de memória, valor de offset e endereço
+ * da Máquina de estados
+ */
+void PrintPIO(PIORefs);
+
+/**
  * @brief Configura um conjunto de pinos GPIO.
  *
  * Esta função inicializa e configura vários pinos GPIO como entrada ou saída, 
- * com base em um array de estruturas `PinOut`.
+ * com base em um array de estruturas `PinOut`, e atribui uma PIO à referência `PIORefs`.
  *
  * @param pins Ponteiro para um array de estruturas `PinOut` contendo os pinos e seus modos.
  * @param size Número total de pinos no array.
+ * @param pio Endereço da PIO a qual se deseja atribuir informações de PIO.
  */
-void Config(PinOut*, int);
+void Config(PinOut*, int, PIORefs*);
+
+PIORefs InitPIO();
 
 /**
  * @brief Inicializa o pino GPIO especificado como entrada ou saída.

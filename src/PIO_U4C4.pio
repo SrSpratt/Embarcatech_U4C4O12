@@ -1,0 +1,39 @@
+.program pio_u4c4
+
+.wrap_target
+    out x, 1
+    jmp !x do_zero
+do_one:
+    set pins, 1 [4]
+    jmp cont
+do_zero:
+    set pins, 1 [2]
+    set pins, 0 [2]
+cont:
+    set pins, 0 [1]
+.wrap
+
+% c-sdk {
+
+    static inline void pio_u4c4_program_init(PIO pio, uint sm, uint offset, uint pin){
+        pio_sm_config conf = pio_u4c4_program_get_default_config(offset);
+
+        sm_config_set_set_pins(&conf, pin, 1);
+
+        pio_gpio_init(pio, pin);
+
+        pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
+
+        float div = clock_get_hz(clk_sys) / 800000.0;
+        sm_config_set_clkdiv(&conf, PIO_FIFO_JOIN_TX);
+
+        sm_config_set_out_shift(&conf, false, true, 24);
+
+        sm_config_set_out_special(&conf, true, false, false);
+
+        pio_sm_init(pio, sm, offset, &conf);
+
+        pio_sm_set_enabled(pio, sm, true);
+    }
+
+%}

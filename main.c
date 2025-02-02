@@ -7,11 +7,14 @@
 
 int main(){
 
+    PIORefs pio;
+
     PinOut pins[PINS] = {
         { .Pin = LEDPIN, .Input = false}
     };
 
-    Config(pins, PINS);
+    Config(pins, PINS, &pio);
+    PrintPIO(pio);
 
     while(1){
         TogglePin(LEDPIN, 200); // pisca 5 vezes por segundo/ 1 vez a cada 200 ms

@@ -1,11 +1,21 @@
 #include <General_U4C4.h>
+#include <stdio.h>
+#include "hardware/clocks.h"
+#include "pio_u4c4.pio.h"
+#include "hardware/adc.h"
 
 void PrintPinOut(PinOut pin){
     printf("Pin: %d\n", pin.Pin);
     printf("Input: %d\n", pin.Input);
 }
 
-void Config(PinOut* pins, int size){
+void PrintPIO(PIORefs pio){
+    printf("Address: %d\n", pio.Address);
+    printf("Offset: %d\n", pio.Offset);
+    printf("State Machine: %d\n", pio.StateMachine);
+}
+
+void Config(PinOut* pins, int size, PIORefs* pio){
     stdio_init_all();
 
     // for(int i = 0;i < size; i++)
@@ -14,6 +24,12 @@ void Config(PinOut* pins, int size){
 
     for(int i = 0; i < size; i++)
         InitPin(pins[i].Pin, pins[i].Input);
+
+    pio->Address = pio0;
+    if(!set_sys_clock_khz(128000, false))
+        printf("clock errado!");
+    pio->Offset = pio_add_program(pio->Address, &pio_u4c4_program);
+    PrintPIO(*(pio));
 
     //printf("configuração terminada\n");
 }
