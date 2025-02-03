@@ -18,8 +18,10 @@ Certifique-se de que você tem o ambiente configurado conforme abaixo:
 
 #### Manual do programa
 Ao executar o programa, todos os leds serão ligados com a cor azul, indicando o início do programa:
-* A lógica do programa é que ao apertar o botão A, serão desenhados os números de uma contagem crescente de 0 a 9 em cor vermelha na matriz de LEDs. 
+* A lógica do programa é que ao apertar o botão A, serão desenhados os números de uma contagem crescente de 0 a 9 em cor vermelha na matriz de LEDs.
+    * Obs.: depois do 9, apertado o botão A, volta-se para a tela inicial de todos os leds acesos em azul. Para reiniciar a contagem do 0, basta apertar mais uma vez.
 * Ao apertar o botão B, os números serão desenhados de forma decrescente.
+    * Obs.: depois do 0, apertado o botão B, volta-se para o 9, reiniciando-se a contagem imediatamente.
 * Concomitantemente, o LED RGB vermelho está piscando num período de 200ms, isto é, 5Hz para c (ou ainda, 5 vezes por segundo, conforme estabelecido).
 * Obs. I: o debounce foi implementado nos botões, de forma que não houvesse missclick (conforme estabelecido na questão).
 * Obs. II: os LEDs da matriz estão configurados com o brilho mais baixo do que 100%, pois são muito fortes.
