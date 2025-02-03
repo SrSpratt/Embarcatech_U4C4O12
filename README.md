@@ -20,7 +20,7 @@ Certifique-se de que você tem o ambiente configurado conforme abaixo:
 Ao executar o programa, todos os leds serão ligados com a cor azul, indicando o início do programa:
 * A lógica do programa é que ao apertar o botão A, serão desenhados os números de uma contagem crescente de 0 a 9 em cor vermelha na matriz de LEDs. 
 * Ao apertar o botão B, os números serão desenhados de forma decrescente.
-* Concomitantemente, o LED RGB vermelho está piscando num período de 200ms, isto é, 5Hz (ou ainda, 5 vezes por segundo, conforme estabelecido).
+* Concomitantemente, o LED RGB vermelho está piscando num período de 200ms, isto é, 5Hz para c (ou ainda, 5 vezes por segundo, conforme estabelecido).
 * Obs. I: o debounce foi implementado nos botões, de forma que não houvesse missclick (conforme estabelecido na questão).
 * Obs. II: os LEDs da matriz estão configurados com o brilho mais baixo do que 100%, pois são muito fortes.
 * Obs. III: o LED inicialmente fora pensado para alternar (pisca-pisca) com sleep_ms, mas depois revi a aula de timer e acabei implementando dessa forma.

@@ -89,12 +89,13 @@ int main(){
  * permitindo que a alternância ocorra a intervalos regulares.
  * 
  * @return O tempo em microssegundos até que a próxima execução da callback seja disparada.
- *         No caso desta função, ela retorna `200000`, ou seja, 200 mil microssegundos (200ms), 
- *         para que o LED seja alternado periodicamente a cada 200ms.
+ *         No caso desta função, ela retorna `100000`, ou seja, 100 mil microssegundos (100ms), 
+ *         para que o estado do LED seja alternado periodicamente a cada 100ms.
+ *         Com isso, um ciclo completo (pisca-pisca/acende-e-apaga) é completado em 200ms.
  */
 int64_t TogglePinCallback(alarm_id_t id, void *user_data) {
     int toggleLevel = !gpio_get(LEDPIN);
     gpio_put(LEDPIN, toggleLevel);
-    return 200000;
+    return 100000;
 }
 
