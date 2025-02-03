@@ -89,7 +89,7 @@ int main(){
  * permitindo que a alternância ocorra a intervalos regulares.
  * 
  * @return O tempo em microssegundos até que a próxima execução da callback seja disparada.
- *         No caso desta função, ela retorna `200000`, ou seja, 100 mil microssegundos (100ms), 
+ *         No caso desta função, ela retorna `200000`, ou seja, 200 mil microssegundos (200ms), 
  *         para que o LED seja alternado periodicamente a cada 200ms.
  */
 int64_t TogglePinCallback(alarm_id_t id, void *user_data) {
