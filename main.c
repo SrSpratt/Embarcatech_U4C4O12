@@ -68,7 +68,7 @@ int main(){
     
     SetInterrupt(sketch, ledConf, pio, Draw, BUTTONB, buttons);
 
-    add_alarm_in_ms(200, TogglePinCallback, NULL, true);
+    add_alarm_in_ms(100, TogglePinCallback, NULL, true);
     
     while(1){
         //Count(sketch, ledConf, pio, 1000);
