@@ -4,7 +4,7 @@
 * Roberto Vítor Lima Gomes Rodrigues
 
 #### Vídeo de funcionamento
-* link
+* https://youtube.com/shorts/5lOzChNOOn0?feature=share
 
 #### Instruções de compilação
 Certifique-se de que você tem o ambiente configurado conforme abaixo:

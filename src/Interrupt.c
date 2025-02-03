@@ -1,7 +1,7 @@
 #include <Interrupt_U4C4.h>
 
 InterruptContext interruptContext = {NULL, {0}, 0, {0}, 0, 0};
-volatile uint32_t intervalButtonA = 0;
+volatile uint32_t intervalButtonA = -1;
 volatile uint32_t intervalButtonB = 0;
 
 void SetInterrupt(Sketch sketch, uint32_t ledConf, PIORefs pio, InterruptCallback callback, int inputPin, int pinToCompare[2]) {
